@@ -1,20 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BoxScriptCube : MonoBehaviour
 {
     private int count;
+    public GameObject thePlayer;
+    private Vector3 playerPosition;
     private Rigidbody rb;
-    public float speed = 15f;
-    public Transform enemyPrefab;
-    public Transform spawnPoint;
+    public float speed = 20f;
+    private NavMeshAgent agent;
+   
 
     // Start is called before the first frame update
     void Start() //like a constructor
     {
         count = 0;
-        
+        rb = this.gameObject.GetComponent<Rigidbody>();
+        agent = this.gameObject.GetComponent<NavMeshAgent>();
+        //agent.speed = 20f;
+        //agent.Warp(thePlayer.transform.position);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -35,5 +41,7 @@ public class BoxScriptCube : MonoBehaviour
     void Update()
     {
         
+        agent.SetDestination(thePlayer.transform.position);
+
     }
 }

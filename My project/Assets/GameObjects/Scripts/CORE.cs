@@ -6,8 +6,7 @@ public class CORE : MonoBehaviour
 {
     public Transform enemyPrefab;
     public Transform spawnPoint;
-    public float speed = 40f;
-    
+       
     
     private static List<GameObject> theRooms = new List<GameObject>();
     public static void display()
@@ -22,7 +21,7 @@ public class CORE : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 20; i++)
+        /*for (int i = 0; i < 20; i++)
         {
             print(Random.Range(1,20));
             if(i <= 5)
@@ -45,7 +44,7 @@ public class CORE : MonoBehaviour
                 Transform r = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
                 r.transform.position += new Vector3(2 * speed * Time.deltaTime, 20, 5);
             }
-        }
+        }*/
         /*int random_number = Random.Range(1, 20);
         if (random_number < 5)
         {
@@ -79,7 +78,13 @@ public class CORE : MonoBehaviour
             rb.velocity = Vector3.back * speed;
             //rb.velocity = constantSpeed * (GetComponent<Rigidbody>().velocity.normalized);
         }*/
-        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+        for (int i = 0; i < 100; i++)
+        {
+            Transform t = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+            Rigidbody rb = t.GetComponent<Rigidbody>();
+            rb.velocity = new Vector3(Random.Range(10,30), Random.Range(10,30), Random.Range(10,30));
+        }
+        
     }
      
     
