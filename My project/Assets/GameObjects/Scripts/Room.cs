@@ -2,17 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Room
 {
-    // Start is called before the first frame update
-    void Start()
+    private Player thePlayer;
+    private Enemy theEnemy;
+
+    public Room()
     {
-        
+        this.thePlayer = null;
+        this.theEnemy = null;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void setPlayer(Player p)
     {
-        
+        this.thePlayer = p;
+        this.thePlayer.setRoom(this); //let the player know they are in a new room
+    }
+    public void setEnemy(Enemy e)
+    {
+        this.theEnemy = e;
+        this.theEnemy.setRoomEnemy(this);
+    }
+
+    public Player getPlayer()
+    {
+        return this.thePlayer;
+    }
+    public Enemy getEnemy()
+    {
+        return this.theEnemy;
     }
 }

@@ -4,28 +4,26 @@ using UnityEngine;
 
 public class playerScript : MonoBehaviour
 {
-    private Player thePlayer;
+    private Player thePlayer = new Player("Ione");
     private Rigidbody rb;
     public float speed = 20f;
     private int count = 0;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        thePlayer = new Player("Ione");
+        
+        CORE.setPlayer(thePlayer);
         rb = this.gameObject.GetComponent<Rigidbody>();
     }
-
-    public void display()
+    public Player getPlayer()
     {
-        print("Player Script Display");
+        return this.thePlayer;
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        SendMessage("display");
-        CORE.display();
-
         if(collision.gameObject.tag.Equals("enemy"))
         {
             count++;

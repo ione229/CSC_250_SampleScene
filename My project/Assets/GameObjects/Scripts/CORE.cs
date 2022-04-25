@@ -8,15 +8,41 @@ public class CORE : MonoBehaviour
     public Transform spawnPoint;
        
     
-    private static List<GameObject> theRooms = new List<GameObject>();
-    public static void display()
+    private static List<GameObject> theRoomsGos = new List<GameObject>();
+    private static List<Room> theRooms = new List<Room>();
+    private static Player currentPlayer = null;
+    private static Enemy currentEnemy = null;
+
+    public static void setEnemy(Enemy e)
+    {
+        CORE.currentEnemy = e;
+    }
+    public static Enemy getEnemy()
+    {
+        return CORE.currentEnemy;
+    }
+
+    public static void setPlayer(Player p)
+    {
+        CORE.currentPlayer = p;
+    }
+    public static Player getPlayer()
+    {
+        return CORE.currentPlayer;
+    }
+
+    public static void addRoom(Room theRoom)
+    {
+        CORE.theRooms.Add(theRoom);
+    }
+    /*public static void display()
     {
         print("Woot");
-    }
+    }*/
     public static void AddRoomGO(GameObject go)
     {
-        CORE.theRooms.Add(go);
-        print("Added Room");
+        CORE.theRoomsGos.Add(go);
+        //print("Added Room");
     }
     // Start is called before the first frame update
     void Start()
@@ -78,12 +104,12 @@ public class CORE : MonoBehaviour
             rb.velocity = Vector3.back * speed;
             //rb.velocity = constantSpeed * (GetComponent<Rigidbody>().velocity.normalized);
         }*/
-        for (int i = 0; i < 100; i++)
+       /*for (int i = 0; i < 100; i++)
         {
             Transform t = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
             Rigidbody rb = t.GetComponent<Rigidbody>();
             rb.velocity = new Vector3(Random.Range(10,30), Random.Range(10,30), Random.Range(10,30));
-        }
+        }*/
         
     }
      
