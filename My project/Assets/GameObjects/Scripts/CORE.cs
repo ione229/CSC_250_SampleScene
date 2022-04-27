@@ -7,11 +7,22 @@ public class CORE : MonoBehaviour
     public Transform enemyPrefab;
     public Transform spawnPoint;
        
-    
     private static List<GameObject> theRoomsGos = new List<GameObject>();
+    private static List<GameObject> theRoomTriggerGos = new List<GameObject>();
     private static List<Room> theRooms = new List<Room>();
     private static Player currentPlayer = null;
     private static Enemy currentEnemy = null;
+
+    public static GameObject getRoom()
+    {
+        return CORE.theRoomsGos[0];
+    }
+    
+    public static void destroyRoom(GameObject g)
+    {
+        Destroy(CORE.theRoomsGos[theRoomTriggerGos.IndexOf(g)]);
+    }
+    
 
     public static void setEnemy(Enemy e)
     {
@@ -43,6 +54,11 @@ public class CORE : MonoBehaviour
     {
         CORE.theRoomsGos.Add(go);
         //print("Added Room");
+    }
+    public static void AddRoomTriggerGO(GameObject g)
+    {
+        CORE.theRoomTriggerGos.Add(g);
+        //print("Add trigger");
     }
     // Start is called before the first frame update
     void Start()
@@ -104,7 +120,7 @@ public class CORE : MonoBehaviour
             rb.velocity = Vector3.back * speed;
             //rb.velocity = constantSpeed * (GetComponent<Rigidbody>().velocity.normalized);
         }*/
-       /*for (int i = 0; i < 100; i++)
+       /*for (int i = 0; i < 3; i++)
         {
             Transform t = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
             Rigidbody rb = t.GetComponent<Rigidbody>();
@@ -113,7 +129,6 @@ public class CORE : MonoBehaviour
         
     }
      
-    
     void Update()
     {
         

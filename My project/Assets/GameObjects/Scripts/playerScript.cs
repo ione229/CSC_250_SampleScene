@@ -6,14 +6,13 @@ public class playerScript : MonoBehaviour
 {
     private Player thePlayer = new Player("Ione");
     private Rigidbody rb;
-    public float speed = 20f;
+    public float speed = 30f;
     private int count = 0;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
         CORE.setPlayer(thePlayer);
         rb = this.gameObject.GetComponent<Rigidbody>();
     }

@@ -5,12 +5,12 @@ using UnityEngine.AI;
 
 public class BoxScriptCube : MonoBehaviour
 {
-    private Enemy theEnemy = new Enemy("Tommy");
+    private Enemy theEnemy = new Enemy();
     private int count;
     public GameObject thePlayer;
     private Vector3 playerPosition;
     private Rigidbody rb;
-    public float speed = 20f;
+    public float speed = 30f;
     private NavMeshAgent agent;
     
    
@@ -18,7 +18,7 @@ public class BoxScriptCube : MonoBehaviour
     // Start is called before the first frame update
     void Start() //like a constructor
     {
-        CORE.setEnemy(theEnemy);
+        CORE.setEnemy(this.theEnemy);
         count = 0;
         rb = this.gameObject.GetComponent<Rigidbody>();
         agent = this.gameObject.GetComponent<NavMeshAgent>();
